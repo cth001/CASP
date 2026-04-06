@@ -79,22 +79,41 @@ CASP/
 ├─ tsconfig.app.json
 ├─ tsconfig.node.json
 ├─ vite.config.ts
+├─ LICENSE
+├─ CONTRIBUTING.md
 └─ src/
    ├─ main.tsx
    ├─ App.tsx
-   └─ styles.css
+   ├─ styles.css
+   ├─ types.ts
+   ├─ i18n/
+   │  └─ index.ts
+   ├─ data/
+   │  └─ navigation.ts
+   ├─ components/
+   │  └─ layout.tsx
+   └─ pages/
+      ├─ overviewPages.tsx
+      ├─ tradingPages.tsx
+      ├─ operationsPages.tsx
+      └─ collaborationPages.tsx
 ```
 
 ## Current Scope Notes
 
-This repository currently contains a single-project prototype implementation intended for product review, stakeholder walkthroughs, and subsequent UI / interaction refinement.
+This repository now uses a more maintainable multi-file structure while still remaining intentionally prototype-oriented.
 
-The next recommended step is to split the app into a more standard production-oriented structure, for example:
+The current code organization separates:
 
-- `src/components/`
-- `src/pages/`
-- `src/i18n/`
-- `src/data/`
+- layout and reusable UI helpers
+- page-level views
+- navigation data
+- shared types
+- bilingual copy
+
+## Contribution Guidance
+
+Please review `CONTRIBUTING.md` before opening a pull request.
 
 ## Usage Notes
 
