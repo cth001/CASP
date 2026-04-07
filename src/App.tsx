@@ -7,6 +7,7 @@ import { AccountDetailPage, AccountsPage, DashboardPage, DepositPage, KycPage } 
 import { OrderDetailPage, OrdersPage, TradePage } from './pages/tradingPages'
 import { AddressApprovalDetailPage, AddressBookPage, AddAddressPage, ApprovalHistoryPage, ApprovalsPage, WithdrawPage, WithdrawSubmittedPage, WithdrawTrackingPage } from './pages/operationsPages'
 import { ChatPage, MessagesPage, TeamPage } from './pages/collaborationPages'
+import { AdminConsolePage, AdminLedgerPage, AdminLiquidityPage, AdminMonitoringPage, AdminRiskPage, AdminSettingsPage, AdminUsersPage } from './pages/adminConsolePages'
 
 const modalContentMap = {
   zh: {
@@ -33,7 +34,7 @@ export default function App() {
   const t = tFactory(language)
 
   useEffect(() => {
-    const defaults: Record<Role, Page> = { client: 'dashboard', admin: 'accounts', operator: 'accounts', approver: 'approvals' }
+    const defaults: Record<Role, Page> = { client: 'dashboard', admin: 'admin_console', operator: 'accounts', approver: 'approvals' }
     setPage(defaults[role])
   }, [role])
 
@@ -69,6 +70,13 @@ export default function App() {
       case 'messages': return <MessagesPage t={t} />
       case 'chat': return <ChatPage t={t} />
       case 'team': return <TeamPage t={t} />
+      case 'admin_console': return <AdminConsolePage t={t} language={language} />
+      case 'admin_users': return <AdminUsersPage t={t} language={language} />
+      case 'admin_monitoring': return <AdminMonitoringPage t={t} language={language} />
+      case 'admin_risk': return <AdminRiskPage t={t} language={language} />
+      case 'admin_ledger': return <AdminLedgerPage t={t} language={language} />
+      case 'admin_liquidity': return <AdminLiquidityPage t={t} language={language} />
+      case 'admin_settings': return <AdminSettingsPage t={t} language={language} />
       default: return null
     }
   }

@@ -22,6 +22,13 @@ export type Page =
   | 'team'
   | 'messages'
   | 'chat'
+  | 'admin_console'
+  | 'admin_users'
+  | 'admin_monitoring'
+  | 'admin_risk'
+  | 'admin_ledger'
+  | 'admin_liquidity'
+  | 'admin_settings'
 
 export type Tone = 'neutral' | 'info' | 'success' | 'warning' | 'danger'
 export type Dict = Record<string, string>
