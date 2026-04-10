@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { Language } from '../types'
 
 type TFn = (key: string) => string
