@@ -11,7 +11,7 @@ export const navSections: NavSection[] = [
     items: [
       { key: 'dashboard', labelKey: 'dashboard', roles: ['client', 'operator', 'approver'] },
       { key: 'kyc', labelKey: 'kyc', roles: ['client'] },
-      { key: 'admin_console', labelKey: 'admin_console', roles: ['admin'] },
+      { key: 'admin_business_dashboard', labelKey: 'admin_business_dashboard', roles: ['admin'] },
     ],
   },
   {
@@ -21,8 +21,9 @@ export const navSections: NavSection[] = [
       { key: 'deposit', labelKey: 'deposit', roles: ['client', 'operator', 'approver'] },
       { key: 'withdraw', labelKey: 'withdraw', roles: ['client', 'operator'] },
       { key: 'address_book', labelKey: 'address_book', roles: ['operator', 'approver'] },
-      { key: 'admin_users', labelKey: 'admin_users', roles: ['admin'] },
-      { key: 'admin_ledger', labelKey: 'admin_ledger', roles: ['admin'] },
+      { key: 'admin_user_management', labelKey: 'admin_user_management', roles: ['admin'] },
+      { key: 'admin_fund_management', labelKey: 'admin_fund_management', roles: ['admin'] },
+      { key: 'admin_report_management', labelKey: 'admin_report_management', roles: ['admin'] },
     ],
   },
   {
@@ -31,9 +32,9 @@ export const navSections: NavSection[] = [
       { key: 'trade', labelKey: 'trade', roles: ['client', 'operator'] },
       { key: 'orders', labelKey: 'orders', roles: ['client', 'operator', 'approver'] },
       { key: 'approvals', labelKey: 'approvals', roles: ['operator', 'approver'] },
-      { key: 'admin_monitoring', labelKey: 'admin_monitoring', roles: ['admin'] },
-      { key: 'admin_risk', labelKey: 'admin_risk', roles: ['admin'] },
-      { key: 'admin_liquidity', labelKey: 'admin_liquidity', roles: ['admin'] },
+      { key: 'admin_trade_management', labelKey: 'admin_trade_management', roles: ['admin'] },
+      { key: 'admin_risk_management', labelKey: 'admin_risk_management', roles: ['admin'] },
+      { key: 'admin_routing_management', labelKey: 'admin_routing_management', roles: ['admin'] },
     ],
   },
   {

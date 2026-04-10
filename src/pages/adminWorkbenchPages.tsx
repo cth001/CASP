@@ -1,0 +1,471 @@
+import type { Language } from '../types'
+
+type TFn = (key: string) => string
+
+type Tone = 'neutral' | 'info' | 'success' | 'warning' | 'danger'
+
+type Group = { title: string; items: Array<[string, string?]> }
+
+type Row = { primary: string; secondary?: string; cols: string[]; status?: [string, Tone] }
+
+const palette = {
+  panel: '#0F1B2D',
+  soft: '#13233A',
+  border: 'rgba(148,163,184,0.16)',
+  text: '#E6EEF8',
+  sub: '#9FB0C7',
+  muted: '#6F829C',
+}
+
+function copy(language: Language) {
+  if (language === 'zh') {
+    return {
+      dashboard_desc: '面向管理层 / 运营 / 风控 / 财务的业务驾驶舱，展示交易、提币、准入、风险、对账与流动性核心数据。',
+      user_desc: '集中管理个人客户、机构客户、KYC 状态、冻结控制和访问限制。',
+      trade_desc: '管理 RFQ、订单、执行状态、成交结果与异常交易事件。',
+      fund_desc: '统一管理入金确认、异常来款、提币请求、审批和链上执行跟踪。',
+      risk_desc: '管理风险规则、黑白名单、人工复核路径、阈值配置与风控告警。',
+      routing_desc: '管理 LP 优先级、交易对路由、TTL、fallback 和降级策略。',
+      report_desc: '管理运营报表、财务报表、对账导出和监管口径准备。',
+      settings_desc: '管理角色权限、通知模板、展示口径、系统模式和多语言配置。',
+      filters: '筛选分组',
+      list: '表格列表',
+      preview: '对象预览',
+      activity: '近期动态',
+      actions: '快捷动作',
+      selected: '已选中 3 项',
+      search_users: '搜索用户、机构、邮箱、case 编号',
+      search_trades: '搜索订单号、RFQ 编号、用户、交易对',
+      search_funds: '搜索提币号、地址、tx hash、账户',
+      search_risk: '搜索规则名称、规则编号、名单、case',
+      search_routing: '搜索策略版本、LP 名称、交易对、通道',
+      search_reports: '搜索报表、批次号、导出任务、日期',
+      search_settings: '搜索参数、模板、角色、系统模式',
+      bulk_export: '批量导出',
+      bulk_assign: '批量分配',
+      bulk_freeze: '批量冻结',
+      bulk_review: '升级人工处理',
+      bulk_compare: '版本对比',
+      bulk_override: '紧急覆盖',
+      bulk_rerun: '批量重跑',
+      previous: '上一页',
+      next: '下一页',
+      all_objects: '全部对象',
+      retail: '个人',
+      institution: '机构',
+      orders_tab: '订单',
+      rfq_tab: 'RFQ',
+      exceptions_tab: '异常执行',
+      withdrawals_tab: '提币',
+      deposits_tab: '入金',
+      exception_tab: '异常',
+      rules_tab: '规则',
+      lists_tab: '名单',
+      alerts_tab: '告警',
+      policies_tab: '策略',
+      lp_tab: 'LP',
+      routes_tab: '路由集',
+      ops_reports_tab: '运营报表',
+      finance_tab: '财务报表',
+      regulatory_tab: '监管口径',
+      filters_btn: '筛选',
+      refresh_btn: '刷新',
+      showing_rows: '显示 1-20 / 共 184 条',
+      preview_tab: '预览',
+      activity_tab: '动态',
+      actions_tab: '动作',
+    }
+  }
+  return {
+    dashboard_desc: 'Executive and operational cockpit across trading, withdrawals, onboarding, risk, reconciliation, and liquidity.',
+    user_desc: 'Manage retail clients, institutions, KYC states, freeze controls, and access restrictions.',
+    trade_desc: 'Manage RFQs, orders, execution states, fills, and trade exceptions.',
+    fund_desc: 'Manage deposit confirmations, exceptional inflows, withdrawal requests, approvals, and on-chain execution tracking.',
+    risk_desc: 'Manage risk rules, allow/deny lists, manual review paths, threshold settings, and risk alerts.',
+    routing_desc: 'Manage LP priority, pair routing, TTL, fallback behavior, and degradation policies.',
+    report_desc: 'Manage operational reports, finance reports, reconciliation exports, and regulatory-format preparation.',
+    settings_desc: 'Manage role permissions, notification templates, display posture, system modes, and language configuration.',
+    filters: 'Filter groups',
+    list: 'Table list',
+    preview: 'Object preview',
+    activity: 'Recent activity',
+    actions: 'Quick actions',
+    selected: '3 selected',
+    search_users: 'Search users, institutions, emails, case IDs',
+    search_trades: 'Search order IDs, RFQ IDs, users, pairs',
+    search_funds: 'Search withdrawal IDs, addresses, tx hash, accounts',
+    search_risk: 'Search rule names, rule IDs, lists, cases',
+    search_routing: 'Search policy versions, LP names, pairs, channels',
+    search_reports: 'Search reports, batch IDs, export jobs, dates',
+    search_settings: 'Search parameters, templates, roles, system modes',
+    bulk_export: 'Bulk Export',
+    bulk_assign: 'Bulk Assign',
+    bulk_freeze: 'Bulk Freeze',
+    bulk_review: 'Escalate Review',
+    bulk_compare: 'Compare Versions',
+    bulk_override: 'Emergency Override',
+    bulk_rerun: 'Rerun Jobs',
+    previous: 'Previous',
+    next: 'Next',
+    all_objects: 'All Objects',
+    retail: 'Retail',
+    institution: 'Institution',
+    orders_tab: 'Orders',
+    rfq_tab: 'RFQ',
+    exceptions_tab: 'Exceptions',
+    withdrawals_tab: 'Withdrawals',
+    deposits_tab: 'Deposits',
+    exception_tab: 'Exceptions',
+    rules_tab: 'Rules',
+    lists_tab: 'Lists',
+    alerts_tab: 'Alerts',
+    policies_tab: 'Policies',
+    lp_tab: 'LP',
+    routes_tab: 'Route Sets',
+    ops_reports_tab: 'Ops Reports',
+    finance_tab: 'Finance',
+    regulatory_tab: 'Regulatory',
+    filters_btn: 'Filters',
+    refresh_btn: 'Refresh',
+    showing_rows: 'Showing 1-20 of 184 rows',
+    preview_tab: 'Preview',
+    activity_tab: 'Activity',
+    actions_tab: 'Actions',
+  }
+}
+
+function ShellCard({ children, style }: { children: any; style?: any }) {
+  return <div className="card-block" style={{ background: palette.panel, border: `1px solid ${palette.border}`, borderRadius: 20, ...style }}>{children}</div>
+}
+
+function BadgeLite({ text, tone = 'neutral' }: { text: string; tone?: Tone }) {
+  const map: Record<Tone, string> = {
+    neutral: 'rgba(148,163,184,0.10)',
+    info: 'rgba(59,167,255,0.12)',
+    success: 'rgba(34,197,94,0.12)',
+    warning: 'rgba(245,158,11,0.12)',
+    danger: 'rgba(239,68,68,0.12)',
+  }
+  return <span style={{ display: 'inline-flex', padding: '4px 10px', borderRadius: 999, border: `1px solid ${palette.border}`, background: map[tone], color: palette.text, fontSize: 12 }}>{text}</span>
+}
+
+function HeaderBlock({ title, desc, badges = [] }: { title: string; desc: string; badges?: Array<[string, Tone]> }) {
+  return (
+    <ShellCard style={{ padding: 20 }}>
+      <div className="row-between" style={{ alignItems: 'flex-start', gap: 12 }}>
+        <div>
+          <div className="value" style={{ marginTop: 0 }}>{title}</div>
+          <div className="meta" style={{ marginTop: 6, color: palette.sub }}>{desc}</div>
+        </div>
+        <div className="button-row" style={{ gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+          {badges.map(([text, tone]) => <BadgeLite key={text} text={text} tone={tone} />)}
+        </div>
+      </div>
+    </ShellCard>
+  )
+}
+
+function HorizontalFilterBar({ title, groups }: { title: string; groups: Group[] }) {
+  return (
+    <ShellCard style={{ padding: 20 }}>
+      <div className="label" style={{ color: palette.sub, marginBottom: 12 }}>{title}</div>
+      <div className="grid cols-3" style={{ gap: 14 }}>
+        {groups.map((group) => (
+          <div key={group.title} style={{ background: palette.soft, border: `1px solid ${palette.border}`, borderRadius: 16, padding: 14 }}>
+            <div className="meta" style={{ color: palette.muted, marginBottom: 10 }}>{group.title}</div>
+            <div className="button-row" style={{ gap: 8, flexWrap: 'wrap' }}>
+              {group.items.map(([label, count]) => <BadgeLite key={`${group.title}-${label}`} text={count ? `${label} ${count}` : label} />)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </ShellCard>
+  )
+}
+
+function SegmentedTabs({ tabs }: { tabs: string[] }) {
+  return <div className="button-row" style={{ gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>{tabs.map((tab, idx) => <button key={tab} className="btn" style={{ opacity: idx === 0 ? 1 : 0.78 }}>{tab}</button>)}</div>
+}
+
+function Toolbar({ placeholder, filters, labels }: { placeholder: string; filters: string[]; labels: { filters_btn: string; refresh_btn: string } }) {
+  return (
+    <div className="button-row" style={{ gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
+      <input className="search-box" placeholder={placeholder} style={{ minWidth: 280, flex: 1 }} />
+      <button className="btn">{labels.filters_btn}</button>
+      <button className="btn">{labels.refresh_btn}</button>
+      {filters.map((item) => <BadgeLite key={item} text={item} />)}
+    </div>
+  )
+}
+
+function TableToolbar({ title, subtitle, actions }: { title: string; subtitle: string; actions: string[] }) {
+  return (
+    <div className="row-between" style={{ alignItems: 'center', marginBottom: 12, gap: 12 }}>
+      <div>
+        <div className="label" style={{ color: palette.text }}>{title}</div>
+        <div className="meta" style={{ color: palette.sub, marginTop: 4 }}>{subtitle}</div>
+      </div>
+      <div className="button-row" style={{ gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+        {actions.map((a) => <button key={a} className="btn secondary">{a}</button>)}
+      </div>
+    </div>
+  )
+}
+
+function SelectionBar({ text, actions }: { text: string; actions: string[] }) {
+  return (
+    <div className="row-between" style={{ background: 'rgba(59,167,255,0.10)', border: `1px solid rgba(59,167,255,0.24)`, borderRadius: 16, padding: 12, marginBottom: 12, gap: 12 }}>
+      <strong style={{ color: palette.text, fontSize: 14 }}>{text}</strong>
+      <div className="button-row" style={{ gap: 8, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
+        {actions.map((a) => <button key={a} className="btn secondary">{a}</button>)}
+      </div>
+    </div>
+  )
+}
+
+function DataTable({ columns, rows }: { columns: string[]; rows: Row[] }) {
+  return (
+    <div style={{ border: `1px solid ${palette.border}`, borderRadius: 18, overflow: 'hidden', background: palette.soft }}>
+      <div style={{ display: 'grid', gridTemplateColumns: `2fr repeat(${columns.length - 1}, minmax(0,1fr)) 120px`, gap: 0, padding: '12px 16px', borderBottom: `1px solid ${palette.border}`, position: 'sticky', top: 0, background: 'rgba(15,27,45,0.96)', backdropFilter: 'blur(8px)' }}>
+        {columns.map((col, idx) => <div key={col} style={{ color: idx === 0 ? palette.text : palette.muted, fontSize: 12, fontWeight: 700 }}>{col}</div>)}
+        <div style={{ color: palette.muted, fontSize: 12, fontWeight: 700 }}>Status</div>
+      </div>
+      {rows.map((row, idx) => (
+        <div key={row.primary} style={{ display: 'grid', gridTemplateColumns: `2fr repeat(${columns.length - 1}, minmax(0,1fr)) 120px`, gap: 0, padding: '14px 16px', borderBottom: idx === rows.length - 1 ? 'none' : `1px solid ${palette.border}`, background: idx === 0 ? 'rgba(59,167,255,0.08)' : 'transparent', boxShadow: idx === 0 ? 'inset 2px 0 0 rgba(59,167,255,0.8)' : 'none' }}>
+          <div>
+            <div style={{ color: palette.text, fontWeight: 600, fontSize: 14 }}>{row.primary}</div>
+            {row.secondary ? <div style={{ color: palette.sub, marginTop: 4, fontSize: 12 }}>{row.secondary}</div> : null}
+          </div>
+          {row.cols.map((col, colIdx) => <div key={`${row.primary}-${colIdx}`} style={{ color: palette.sub, fontSize: 13 }}>{col}</div>)}
+          <div>{row.status ? <BadgeLite text={row.status[0]} tone={row.status[1]} /> : null}</div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function PaginationBar({ text, previous, next }: { text: string; previous: string; next: string }) {
+  return (
+    <div className="row-between" style={{ marginTop: 12, gap: 10 }}>
+      <div className="meta" style={{ color: palette.sub }}>{text}</div>
+      <div className="button-row" style={{ gap: 8 }}>
+        <button className="btn secondary">{previous}</button>
+        <button className="btn">1</button>
+        <button className="btn secondary">2</button>
+        <button className="btn secondary">{next}</button>
+      </div>
+    </div>
+  )
+}
+
+function PreviewPane({ language, title, fields, activity, actions }: { language: Language; title: string; fields: Array<[string, string]>; activity: string[]; actions: string[] }) {
+  const text = copy(language)
+  const [tab, setTab] = useState<'preview' | 'activity' | 'actions'>('preview')
+  return (
+    <ShellCard style={{ padding: 20, position: 'sticky', top: 16 }}>
+      <div className="value" style={{ marginTop: 0 }}>{title}</div>
+      <div className="button-row" style={{ gap: 8, marginTop: 14, marginBottom: 14 }}>
+        <button className="btn" style={{ opacity: tab === 'preview' ? 1 : 0.75 }} onClick={() => setTab('preview')}>{text.preview_tab}</button>
+        <button className="btn" style={{ opacity: tab === 'activity' ? 1 : 0.75 }} onClick={() => setTab('activity')}>{text.activity_tab}</button>
+        <button className="btn" style={{ opacity: tab === 'actions' ? 1 : 0.75 }} onClick={() => setTab('actions')}>{text.actions_tab}</button>
+      </div>
+      {tab === 'preview' && <div className="table-list">{fields.map(([k, v]) => <div key={k} className="card-block"><div className="meta">{k}</div><div className="value" style={{ marginTop: 6 }}>{v}</div></div>)}</div>}
+      {tab === 'activity' && <div className="table-list">{activity.map((item) => <div key={item} className="card-block hero-note">• {item}</div>)}</div>}
+      {tab === 'actions' && <div className="table-list">{actions.map((item) => <button key={item} className="btn secondary" style={{ justifyContent: 'flex-start' }}>{item}</button>)}</div>}
+    </ShellCard>
+  )
+}
+
+function WorkbenchPage({
+  language,
+  title,
+  desc,
+  filterGroups,
+  tabs,
+  searchPlaceholder,
+  chips,
+  tableTitle,
+  tableSubtitle,
+  bulkActions,
+  selectionText,
+  columns,
+  rows,
+  previewTitle,
+  previewFields,
+  previewActivity,
+  previewActions,
+}: {
+  language: Language
+  title: string
+  desc: string
+  filterGroups: Group[]
+  tabs: string[]
+  searchPlaceholder: string
+  chips: string[]
+  tableTitle: string
+  tableSubtitle: string
+  bulkActions: string[]
+  selectionText: string
+  columns: string[]
+  rows: Row[]
+  previewTitle: string
+  previewFields: Array<[string, string]>
+  previewActivity: string[]
+  previewActions: string[]
+}) {
+  const text = copy(language)
+  return (
+    <div className="grid" style={{ gap: 16 }}>
+      <HeaderBlock title={title} desc={desc} badges={[[language === 'zh' ? '后台工作台' : 'Admin Workbench', 'info'], [language === 'zh' ? '双语' : 'Bilingual', 'success']]} />
+      <HorizontalFilterBar title={text.filters} groups={filterGroups} />
+      <div className="grid" style={{ gap: 16, gridTemplateColumns: 'minmax(0,1.7fr) minmax(320px,0.72fr)' }}>
+        <div>
+          <ShellCard style={{ padding: 20 }}>
+            <div className="value" style={{ marginTop: 0, marginBottom: 12 }}>{text.list}</div>
+            <SegmentedTabs tabs={tabs} />
+            <Toolbar placeholder={searchPlaceholder} filters={chips} labels={{ filters_btn: text.filters_btn, refresh_btn: text.refresh_btn }} />
+            <TableToolbar title={tableTitle} subtitle={tableSubtitle} actions={bulkActions} />
+            <SelectionBar text={selectionText} actions={bulkActions.slice(0, Math.min(3, bulkActions.length))} />
+            <DataTable columns={columns} rows={rows} />
+            <PaginationBar text={text.showing_rows} previous={text.previous} next={text.next} />
+          </ShellCard>
+        </div>
+        <div>
+          <PreviewPane language={language} title={previewTitle} fields={previewFields} activity={previewActivity} actions={previewActions} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function AdminBusinessDashboardPage({ language }: { language: Language }) {
+  const text = copy(language)
+  return (
+    <div className="grid" style={{ gap: 16 }}>
+      <HeaderBlock title={language === 'zh' ? '业务仪表盘' : 'Business Dashboard'} desc={text.dashboard_desc} badges={[[language === 'zh' ? '管理视图' : 'Management View', 'success']]} />
+      <div className="grid cols-4">
+        {[
+          [language === 'zh' ? '当日 RFQ 请求数' : 'RFQ Requests Today', '12,482', 'info'],
+          [language === 'zh' ? '当日成交订单数' : 'Filled Orders Today', '1,184', 'success'],
+          [language === 'zh' ? '当日成交额' : 'Executed Volume Today', '$28.4M', 'info'],
+          [language === 'zh' ? '待处理提币' : 'Pending Withdrawals', '37', 'warning'],
+          [language === 'zh' ? '提币完成率' : 'Withdrawal Completion Rate', '97.8%', 'success'],
+          [language === 'zh' ? '待处理 KYC / KYB' : 'Pending KYC / KYB', '173', 'warning'],
+          [language === 'zh' ? '高风险告警' : 'High Risk Alerts', '9', 'danger'],
+          [language === 'zh' ? '未关闭对账 Break' : 'Open Reconciliation Breaks', '2', 'danger'],
+        ].map(([k, v, tone]) => <ShellCard key={String(k)} style={{ padding: 18 }}><div className="row-between"><span className="label">{k}</span><BadgeLite text="LIVE" tone={tone as Tone} /></div><div className="value">{v}</div></ShellCard>)}
+      </div>
+      <div className="grid main-2">
+        <ShellCard style={{ padding: 20 }}>
+          <div className="value" style={{ marginTop: 0 }}>{language === 'zh' ? '关键趋势' : 'Key Trends'}</div>
+          <div className="table-list" style={{ marginTop: 14 }}>
+            {(language === 'zh'
+              ? ['成交额较上一结算日上升 18.6%，机构账户贡献 71%。', '提币平均处理时长升至 22 分钟，主要受一笔大额人工复核影响。', 'LP-B 延迟升高但未影响成交成功率，LP-A 已提升为绝对优先级。']
+              : ['Executed volume is up 18.6% vs the prior settlement day, with institutions contributing 71%.', 'Average withdrawal handling time rose to 22 minutes due to one large manual review case.', 'LP-B latency is elevated without reducing fill success, and LP-A is now absolute priority.']
+            ).map((x) => <div key={x} className="card-block hero-note">• {x}</div>)}
+          </div>
+        </ShellCard>
+        <ShellCard style={{ padding: 20 }}>
+          <div className="value" style={{ marginTop: 0 }}>{language === 'zh' ? '运营观察' : 'Operations Watch'}</div>
+          <div className="table-list" style={{ marginTop: 14 }}>
+            {(language === 'zh'
+              ? ['1 笔大额提币等待审批，尚未进入广播。', '17 个 enhanced review KYC case 等待人工处理。', '2 个对账 break 已归因至 fee rounding 差异。', 'LP-B 当前降级但仍保留为 backup route。']
+              : ['1 large withdrawal is awaiting approval and has not entered broadcast.', '17 enhanced-review KYC cases remain in manual handling.', '2 reconciliation breaks were traced to fee rounding differences.', 'LP-B is degraded but remains available as backup route.']
+            ).map((x) => <div key={x} className="card-block hero-note">• {x}</div>)}
+          </div>
+        </ShellCard>
+      </div>
+    </div>
+  )
+}
+
+export function AdminUserManagementPage({ t, language }: { t: TFn; language: Language }) {
+  const text = copy(language)
+  return <WorkbenchPage language={language} title={t('admin_user_management')} desc={text.user_desc} filterGroups={[
+    { title: language === 'zh' ? '用户类型' : 'Entity Type', items: [[text.retail, '18,214'], [text.institution, '206']] },
+    { title: language === 'zh' ? '准入状态' : 'Access Status', items: [[language === 'zh' ? 'KYC 待处理' : 'KYC Pending', '151'], [language === 'zh' ? 'KYB 待处理' : 'KYB Pending', '22'], [language === 'zh' ? '冻结账户' : 'Frozen', '14']] },
+    { title: language === 'zh' ? '风控状态' : 'Risk Posture', items: [[t('review'), '17'], [language === 'zh' ? '提币受限' : 'Withdrawal Restricted', '28']] },
+  ]} tabs={[text.all_objects, text.retail, text.institution]} searchPlaceholder={text.search_users} chips={[text.retail, text.institution, language === 'zh' ? 'KYC 待处理' : 'KYC Pending']} tableTitle={language === 'zh' ? '用户表格视图' : 'User table view'} tableSubtitle={language === 'zh' ? '支持批量导出、批量冻结和批量分配 case。' : 'Supports bulk export, bulk freeze, and bulk case assignment.'} bulkActions={[text.bulk_export, text.bulk_freeze, text.bulk_assign]} selectionText={text.selected} columns={language === 'zh' ? ['对象', '类型', '准入状态', '风险状态'] : ['Object', 'Type', 'Access Status', 'Risk Status']} rows={[
+    { primary: 'USR-10077 / Hunter Demo', secondary: language === 'zh' ? 'Retail · Enhanced Review · 提币受限' : 'Retail · Enhanced Review · Withdrawal restricted', cols: [text.retail, 'Enhanced Review', language === 'zh' ? '提币受限' : 'Withdrawal Restricted'], status: [t('review'), 'warning'] },
+    { primary: 'INS-20008 / Payso Capital Mgmt Demo', secondary: language === 'zh' ? 'Institution · KYB Pending · Settlement Buffer restricted' : 'Institution · KYB Pending · Settlement Buffer restricted', cols: [text.institution, language === 'zh' ? 'KYB 待处理' : 'KYB Pending', language === 'zh' ? '需关注' : 'Attention'], status: [t('pending'), 'warning'] },
+    { primary: 'USR-10211 / Maria Santos', secondary: language === 'zh' ? 'Retail · Active · Spot only' : 'Retail · Active · Spot only', cols: [text.retail, t('active'), language === 'zh' ? '正常' : 'Normal'], status: [t('active'), 'success'] },
+  ]} previewTitle={text.preview} previewFields={[[language === 'zh' ? '当前选中' : 'Selected', 'USR-10077 / Hunter Demo'], [language === 'zh' ? '准入状态' : 'Access Status', 'Enhanced Review / withdrawal restricted'], [language === 'zh' ? '最近风险事件' : 'Latest Risk Event', 'Destination cluster overlap observed'], [language === 'zh' ? '最近 Case' : 'Latest Case', 'KYC-ER-112']]} previewActivity={language === 'zh' ? ['提币能力被降级，人工复核路径已生效。', 'KYC enhanced review 建立，合规队列已接单。'] : ['Withdrawal capability was downgraded and manual review is now active.', 'A KYC enhanced review case was created and assigned to compliance.']} previewActions={language === 'zh' ? ['打开用户详情', '打开 KYC case', '冻结账户'] : ['Open user detail', 'Open KYC case', 'Freeze account']} />
+}
+
+export function AdminTradeManagementPage({ t, language }: { t: TFn; language: Language }) {
+  const text = copy(language)
+  return <WorkbenchPage language={language} title={t('admin_trade_management')} desc={text.trade_desc} filterGroups={[
+    { title: language === 'zh' ? '对象分类' : 'Object Type', items: [[text.rfq_tab, '42'], [text.orders_tab, '1,184'], [text.exceptions_tab, '3']] },
+    { title: language === 'zh' ? '执行状态' : 'Execution State', items: [[language === 'zh' ? '执行中' : 'Executing', '26'], [language === 'zh' ? '已成交' : 'Filled', '1,184'], [language === 'zh' ? '即将过期' : 'Near Expiry', '11']] },
+    { title: language === 'zh' ? '交易对' : 'Pairs', items: [['BTC/USDT'], ['ETH/USDT'], ['SOL/USDT']] },
+  ]} tabs={[text.orders_tab, text.rfq_tab, text.exceptions_tab]} searchPlaceholder={text.search_trades} chips={[language === 'zh' ? '执行中' : 'Executing', language === 'zh' ? '已成交' : 'Filled', 'BTC/USDT']} tableTitle={language === 'zh' ? '订单 / RFQ 表格视图' : 'Order / RFQ table view'} tableSubtitle={language === 'zh' ? '支持批量导出、批量标记异常和批量分配交易员。' : 'Supports bulk export, bulk exception tagging, and trader assignment.'} bulkActions={[text.bulk_export, language === 'zh' ? '标记异常' : 'Mark Exception', language === 'zh' ? '分配交易员' : 'Assign Trader']} selectionText={text.selected} columns={language === 'zh' ? ['对象', '交易对', '状态', '路由'] : ['Object', 'Pair', 'Status', 'Route']} rows={[
+    { primary: 'ORD-240318-001', secondary: language === 'zh' ? 'Operator A · RFQ AUTH confirmed · LP-A routed' : 'Operator A · RFQ AUTH confirmed · LP-A routed', cols: ['BTC/USDT', language === 'zh' ? '已成交' : 'Filled', 'LP-A / P-Route-07'], status: [language === 'zh' ? '已成交' : 'Filled', 'success'] },
+    { primary: 'ORD-240318-002', secondary: language === 'zh' ? 'Client Web · awaiting normalized fill callback' : 'Client Web · awaiting normalized fill callback', cols: ['ETH/USDT', language === 'zh' ? '执行中' : 'Executing', 'LP-A / P-Route-07'], status: [language === 'zh' ? '执行中' : 'Executing', 'info'] },
+    { primary: 'RFQ-20260407-119', secondary: language === 'zh' ? 'Quote TTL close to expiry · user not confirmed' : 'Quote TTL close to expiry · user not confirmed', cols: ['SOL/USDT', language === 'zh' ? '即将过期' : 'Near Expiry', 'LP-A / P-Route-07'], status: [language === 'zh' ? '需关注' : 'Attention', 'warning'] },
+  ]} previewTitle={text.preview} previewFields={[[language === 'zh' ? '当前选中' : 'Selected', 'ORD-240318-002 / ETH-USDT'], [language === 'zh' ? '执行状态' : 'Execution Status', language === 'zh' ? '执行中' : 'Executing'], [language === 'zh' ? '路由策略' : 'Routing Policy', 'P-Route-07'], [language === 'zh' ? '当前问题' : 'Current Issue', language === 'zh' ? '等待归一化 callback' : 'Awaiting normalized callback']]} previewActivity={language === 'zh' ? ['订单已发送到 LP-A。', '归一化 fill callback 尚未返回。'] : ['Order has been sent to LP-A.', 'Normalized fill callback has not returned yet.']} previewActions={language === 'zh' ? ['打开路由策略详情', '查看异常执行列表', '导出当前交易队列'] : ['Open routing policy detail', 'Open execution exceptions', 'Export current trading queue']} />
+}
+
+export function AdminFundManagementPage({ t, language }: { t: TFn; language: Language }) {
+  const text = copy(language)
+  return <WorkbenchPage language={language} title={t('admin_fund_management')} desc={text.fund_desc} filterGroups={[
+    { title: language === 'zh' ? '业务类型' : 'Flow Type', items: [[text.withdrawals_tab, '37'], [text.deposits_tab, '124'], [text.exception_tab, '3']] },
+    { title: language === 'zh' ? '处理状态' : 'Processing State', items: [[language === 'zh' ? '待审批' : 'Pending Approval', '12'], [language === 'zh' ? '链上处理中' : 'On-chain', '19'], [language === 'zh' ? '待入账' : 'Pending Credit', '6']] },
+    { title: language === 'zh' ? '风险维度' : 'Risk Posture', items: [[language === 'zh' ? '高金额' : 'High Value', '1'], [language === 'zh' ? '地址异常' : 'Address Exception', '2']] },
+  ]} tabs={[text.withdrawals_tab, text.deposits_tab, text.exception_tab]} searchPlaceholder={text.search_funds} chips={[text.withdrawals_tab, language === 'zh' ? '入金异常' : 'Deposit Exceptions', language === 'zh' ? '待审批' : 'Pending Approval']} tableTitle={language === 'zh' ? '资金表格视图' : 'Funds table view'} tableSubtitle={language === 'zh' ? '支持批量导出、升级人工处理和查看链上状态。' : 'Supports bulk export, escalation, and on-chain inspection.'} bulkActions={[text.bulk_export, text.bulk_review, language === 'zh' ? '查看链上状态' : 'Check On-chain']} selectionText={text.selected} columns={language === 'zh' ? ['对象', '类型', '状态', '金额 / 资产'] : ['Object', 'Type', 'Status', 'Amount / Asset']} rows={[
+    { primary: 'WD-20260406-018', secondary: language === 'zh' ? '120,000 USDT · OTC Desk A · approved destination' : '120,000 USDT · OTC Desk A · approved destination', cols: [text.withdrawals_tab, language === 'zh' ? '人工复核' : 'Manual Review', '120,000 USDT'], status: [t('review'), 'warning'] },
+    { primary: 'DEP-20260407-033', secondary: language === 'zh' ? 'TRON inbound · deprecated address hit' : 'TRON inbound · deprecated address hit', cols: [language === 'zh' ? '入金异常' : 'Deposit Exception', language === 'zh' ? '异常' : 'Exception', 'TRON / inbound'], status: [language === 'zh' ? '异常' : 'Exception', 'danger'] },
+    { primary: 'WD-20260407-052', secondary: language === 'zh' ? '18,000 USDT · awaiting on-chain confirmations' : '18,000 USDT · awaiting on-chain confirmations', cols: [text.withdrawals_tab, language === 'zh' ? '链上处理中' : 'On-chain', '18,000 USDT'], status: [language === 'zh' ? '链上处理中' : 'On-chain', 'info'] },
+  ]} previewTitle={text.preview} previewFields={[[language === 'zh' ? '当前选中' : 'Selected', 'WD-20260406-018'], [language === 'zh' ? '处理路径' : 'Processing Path', 'Operator → Approver → Broadcast'], [language === 'zh' ? '风险结果' : 'Risk Result', 'REVIEW_REQUIRED'], [language === 'zh' ? '当前阶段' : 'Current Stage', language === 'zh' ? '待审批' : 'Pending Approval']]} previewActivity={language === 'zh' ? ['金额阈值与地址评分共同触发 review。', '当前尚未进入 broadcast。'] : ['Amount threshold and address score jointly triggered review.', 'The request has not entered broadcast yet.']} previewActions={language === 'zh' ? ['打开提币 case 详情', '查看地址风险结果', '导出当前队列'] : ['Open withdrawal case detail', 'View address risk result', 'Export current queue']} />
+}
+
+export function AdminRiskManagementPage({ t, language }: { t: TFn; language: Language }) {
+  const text = copy(language)
+  return <WorkbenchPage language={language} title={t('admin_risk_management')} desc={text.risk_desc} filterGroups={[
+    { title: language === 'zh' ? '对象分类' : 'Object Type', items: [[text.rules_tab, '12'], [text.lists_tab, '5'], [text.alerts_tab, '21']] },
+    { title: language === 'zh' ? '状态' : 'Status', items: [[t('active'), '12'], [language === 'zh' ? '草稿' : 'Draft', '3'], [language === 'zh' ? '高风险' : 'High Risk', '9']] },
+    { title: language === 'zh' ? '业务域' : 'Business Domain', items: [[text.withdrawals_tab], [language === 'zh' ? '地址' : 'Addresses'], ['KYC']] },
+  ]} tabs={[text.rules_tab, text.lists_tab, text.alerts_tab]} searchPlaceholder={text.search_risk} chips={[language === 'zh' ? '提款规则' : 'Withdrawal Rules', t('active'), text.lists_tab]} tableTitle={language === 'zh' ? '规则 / 告警表格视图' : 'Rule / alert table view'} tableSubtitle={language === 'zh' ? '支持批量导出告警、批量分配 case 和规则版本比对。' : 'Supports bulk alert export, assignment, and rule comparison.'} bulkActions={[language === 'zh' ? '导出告警' : 'Export Alerts', text.bulk_assign, text.bulk_compare]} selectionText={text.selected} columns={language === 'zh' ? ['对象', '类型', '状态', '业务域'] : ['Object', 'Type', 'Status', 'Domain']} rows={[
+    { primary: 'R-Withdrawal-07', secondary: 'Large Withdrawal + Risk Score Escalation', cols: [text.rules_tab, t('active'), text.withdrawals_tab], status: [t('active'), 'success'] },
+    { primary: 'LIST-Internal-Blacklist', secondary: language === 'zh' ? '42 addresses · 3 domains · synced 10 min ago' : '42 addresses · 3 domains · synced 10 min ago', cols: [text.lists_tab, language === 'zh' ? '已同步' : 'Synced', language === 'zh' ? '地址' : 'Addresses'], status: [language === 'zh' ? '已同步' : 'Synced', 'info'] },
+    { primary: 'ALERT-20260407-009', secondary: language === 'zh' ? 'High-value withdrawal matched medium-risk wallet score' : 'High-value withdrawal matched medium-risk wallet score', cols: [text.alerts_tab, language === 'zh' ? '高风险' : 'High Risk', text.withdrawals_tab], status: [language === 'zh' ? '高风险' : 'High Risk', 'danger'] },
+  ]} previewTitle={text.preview} previewFields={[[language === 'zh' ? '当前选中' : 'Selected', 'R-Withdrawal-07'], [language === 'zh' ? '作用范围' : 'Scope', 'Retail + Institution withdrawals'], [language === 'zh' ? '主动作' : 'Primary Action', 'Manual review required'], [language === 'zh' ? '最新版本' : 'Latest Version', 'Version 7']]} previewActivity={language === 'zh' ? ['Version 7 已上线。', '最近命中触发 3 笔提币人工复核。'] : ['Version 7 is live.', 'Recent hits triggered manual review for 3 withdrawals.']} previewActions={language === 'zh' ? ['打开规则编辑页', '查看命中 case', '导出当前高风险告警'] : ['Open rule editor', 'Open matched cases', 'Export current high-risk alerts']} />
+}
+
+export function AdminRoutingManagementPage({ t, language }: { t: TFn; language: Language }) {
+  const text = copy(language)
+  return <WorkbenchPage language={language} title={t('admin_routing_management')} desc={text.routing_desc} filterGroups={[
+    { title: language === 'zh' ? '策略状态' : 'Policy Status', items: [[t('active'), '7'], [language === 'zh' ? '草稿' : 'Draft', '2'], [language === 'zh' ? '紧急覆盖' : 'Emergency Override', '1']] },
+    { title: language === 'zh' ? 'LP 健康度' : 'LP Health', items: [['LP-A', t('healthy')], ['LP-B', t('degraded')]] },
+    { title: language === 'zh' ? '产品域' : 'Product Scope', items: [['RFQ Spot'], [language === 'zh' ? 'Top Tier Pairs' : 'Top Tier Pairs']] },
+  ]} tabs={[text.policies_tab, text.lp_tab, text.routes_tab]} searchPlaceholder={text.search_routing} chips={['LP-A', 'LP-B', 'RFQ Spot']} tableTitle={language === 'zh' ? '路由表格视图' : 'Routing table view'} tableSubtitle={language === 'zh' ? '支持批量导出、策略检查和紧急覆盖管理。' : 'Supports bulk export, policy checks, and emergency overrides.'} bulkActions={[text.bulk_export, language === 'zh' ? '策略检查' : 'Policy Check', text.bulk_override]} selectionText={text.selected} columns={language === 'zh' ? ['对象', '状态', 'Primary / Backup', '产品域'] : ['Object', 'Status', 'Primary / Backup', 'Scope']} rows={[
+    { primary: 'P-Route-07', secondary: language === 'zh' ? 'LP-A primary · LP-B backup · TTL 60s' : 'LP-A primary · LP-B backup · TTL 60s', cols: [t('active'), 'LP-A / LP-B', 'RFQ Spot'], status: [t('active'), 'success'] },
+    { primary: 'P-Route-08', secondary: language === 'zh' ? 'manual emergency override for LP degradation' : 'manual emergency override for LP degradation', cols: [language === 'zh' ? '草稿' : 'Draft', 'LP-A / LP-B', 'Emergency'], status: [language === 'zh' ? '草稿' : 'Draft', 'warning'] },
+    { primary: 'PAIR-BTC-USDT', secondary: language === 'zh' ? 'tier-1 liquidity route · primary LP-A' : 'tier-1 liquidity route · primary LP-A', cols: [language === 'zh' ? '正常' : 'Normal', 'LP-A / LP-B', 'Top Tier'], status: [language === 'zh' ? '正常' : 'Normal', 'success'] },
+  ]} previewTitle={text.preview} previewFields={[[language === 'zh' ? '当前选中' : 'Selected', 'P-Route-07'], ['Primary LP', 'LP-A'], ['Backup LP', 'LP-B'], [language === 'zh' ? '当前关注点' : 'Current Concern', 'LP-B latency elevated']]} previewActivity={language === 'zh' ? ['LP-B 已降级，latency threshold reached。', 'LP-A 已提升为绝对优先级。'] : ['LP-B is degraded because the latency threshold was reached.', 'LP-A has been elevated to absolute priority.']} previewActions={language === 'zh' ? ['打开策略详情', '查看当前降级草稿', '导出 LP 健康报告'] : ['Open policy detail', 'Open degraded-mode draft', 'Export LP health report']} />
+}
+
+export function AdminReportManagementPage({ t, language }: { t: TFn; language: Language }) {
+  const text = copy(language)
+  return <WorkbenchPage language={language} title={t('admin_report_management')} desc={text.report_desc} filterGroups={[
+    { title: language === 'zh' ? '报表类型' : 'Report Type', items: [[language === 'zh' ? '运营日报' : 'Ops Daily', '4'], [language === 'zh' ? '财务' : 'Finance', '3'], [language === 'zh' ? '对账' : 'Reconciliation', '2'], [language === 'zh' ? '监管' : 'Regulatory', '1']] },
+    { title: language === 'zh' ? '导出状态' : 'Export Status', items: [[language === 'zh' ? '可导出' : 'Ready', '8'], [language === 'zh' ? '运行中' : 'Running', '2'], [language === 'zh' ? '失败' : 'Failed', '1']] },
+    { title: language === 'zh' ? '时间维度' : 'Time Window', items: [[language === 'zh' ? '日' : 'Daily'], [language === 'zh' ? '周' : 'Weekly'], [language === 'zh' ? '月' : 'Monthly']] },
+  ]} tabs={[text.ops_reports_tab, text.finance_tab, text.regulatory_tab]} searchPlaceholder={text.search_reports} chips={[language === 'zh' ? '日报' : 'Daily', language === 'zh' ? '财务' : 'Finance', language === 'zh' ? '对账' : 'Reconciliation']} tableTitle={language === 'zh' ? '报表表格视图' : 'Report table view'} tableSubtitle={language === 'zh' ? '支持批量导出、重跑任务和失败任务处理。' : 'Supports bulk export, reruns, and failed-job handling.'} bulkActions={[text.bulk_export, text.bulk_rerun, language === 'zh' ? '处理失败任务' : 'Handle Failed Jobs']} selectionText={text.selected} columns={language === 'zh' ? ['报表', '类型', '状态', '时间范围'] : ['Report', 'Type', 'Status', 'Time Window']} rows={[
+    { primary: language === 'zh' ? '每日交易经营报表' : 'Daily Trading Operations Report', secondary: language === 'zh' ? '包含 RFQ、成交额、用户分层、提币成功率' : 'RFQs, volume, user mix, withdrawal completion rate', cols: [language === 'zh' ? '运营' : 'Ops', language === 'zh' ? '可导出' : 'Ready', '2026-04-07 / daily'], status: [language === 'zh' ? '可导出' : 'Ready', 'success'] },
+    { primary: language === 'zh' ? '每日对账差异报表' : 'Daily Reconciliation Break Report', secondary: language === 'zh' ? '2 open breaks / finance owner assigned' : '2 open breaks / finance owner assigned', cols: [language === 'zh' ? '对账' : 'Reconciliation', language === 'zh' ? '需处理' : 'Attention', '2026-04-07 / daily'], status: [language === 'zh' ? '需处理' : 'Attention', 'danger'] },
+    { primary: language === 'zh' ? 'LP 健康周报' : 'LP Health Weekly Report', secondary: language === 'zh' ? 'latency, degradation, fallback hit rate' : 'latency, degradation, fallback hit rate', cols: ['LP', language === 'zh' ? '可导出' : 'Ready', '2026-W14'], status: [language === 'zh' ? '可导出' : 'Ready', 'info'] },
+  ]} previewTitle={text.preview} previewFields={[[language === 'zh' ? '当前选中' : 'Selected', language === 'zh' ? '每日交易经营报表' : 'Daily Trading Operations Report'], [language === 'zh' ? '时间范围' : 'Time Window', '2026-04-07 / daily'], [language === 'zh' ? '导出状态' : 'Export Status', language === 'zh' ? '可导出' : 'Ready'], [language === 'zh' ? '最近导出' : 'Last Export', '2026-04-07 09:12']]} previewActivity={language === 'zh' ? ['09:12 导出成功，文件已入对象存储。', '下一次计划任务将于明日 09:00 运行。'] : ['The 09:12 export succeeded and the file was stored.', 'The next scheduled job will run tomorrow at 09:00.']} previewActions={language === 'zh' ? ['打开业务仪表盘', '新建手动导出任务', '查看失败导出任务'] : ['Open business dashboard', 'Create manual export job', 'Open failed export jobs']} />
+}
+
+export function AdminSettingsWorkbenchPage({ t, language }: { t: TFn; language: Language }) {
+  const text = copy(language)
+  return <WorkbenchPage language={language} title={t('admin_settings')} desc={text.settings_desc} filterGroups={[
+    { title: language === 'zh' ? '配置域' : 'Config Domain', items: [['RBAC'], [language === 'zh' ? '通知模板' : 'Templates'], [language === 'zh' ? '状态映射' : 'Status Mapping']] },
+    { title: language === 'zh' ? '系统模式' : 'System Modes', items: [[language === 'zh' ? '正常' : 'Normal'], [language === 'zh' ? '降级' : 'Degraded']] },
+    { title: language === 'zh' ? '语言' : 'Language', items: [['ZH'], ['EN']] },
+  ]} tabs={[language === 'zh' ? '角色权限' : 'Role Permissions', language === 'zh' ? '通知模板' : 'Templates', language === 'zh' ? '状态映射' : 'Status Mapping']} searchPlaceholder={text.search_settings} chips={['RBAC', language === 'zh' ? '通知模板' : 'Templates', language === 'zh' ? '状态映射' : 'Status Mapping']} tableTitle={language === 'zh' ? '系统配置表格视图' : 'System configuration table view'} tableSubtitle={language === 'zh' ? '支持配置检查、导出和版本审查。' : 'Supports configuration checks, exports, and version review.'} bulkActions={[text.bulk_export, language === 'zh' ? '配置检查' : 'Config Check', text.bulk_compare]} selectionText={text.selected} columns={language === 'zh' ? ['对象', '类型', '状态', '当前版本'] : ['Object', 'Type', 'Status', 'Current Version']} rows={[
+    { primary: language === 'zh' ? '角色权限矩阵' : 'Role Permission Matrix', secondary: 'Admin / Operator / Approver / Support scopes', cols: ['RBAC', t('active'), 'v3'], status: [t('active'), 'success'] },
+    { primary: language === 'zh' ? '客户可见状态映射' : 'Client-visible Status Mapping', secondary: 'Provider raw states normalized', cols: [language === 'zh' ? '状态映射' : 'Status Mapping', t('active'), 'v3'], status: [t('active'), 'info'] },
+    { primary: language === 'zh' ? '系统模式与降级开关' : 'System Mode & Degradation Switches', secondary: 'Trading / withdrawal / LP routing operational controls', cols: [language === 'zh' ? '系统模式' : 'System Modes', language === 'zh' ? '正常' : 'Normal', 'v2'], status: [language === 'zh' ? '正常' : 'Normal', 'success'] },
+  ]} previewTitle={text.preview} previewFields={[[language === 'zh' ? '当前选中' : 'Selected', language === 'zh' ? '角色权限矩阵' : 'Role Permission Matrix'], [language === 'zh' ? '配置域' : 'Config Domain', 'RBAC'], [language === 'zh' ? '当前版本' : 'Current Version', 'v3'], [language === 'zh' ? '最近更新' : 'Last Updated', '2026-04-07 11:10']]} previewActivity={language === 'zh' ? ['最近一次变更涉及 approver scope 调整。', '当前配置审查未发现冲突。'] : ['The latest change adjusted the approver scope.', 'No conflicts were found in the current configuration review.']} previewActions={language === 'zh' ? ['打开配置详情', '导出当前配置摘要', '查看版本历史'] : ['Open config detail', 'Export current config summary', 'Open version history']} />
+}
