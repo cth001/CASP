@@ -30,6 +30,13 @@ export type Page =
   | 'admin_routing_management'
   | 'admin_report_management'
   | 'admin_settings'
+  | 'admin_user_detail'
+  | 'admin_trade_detail'
+  | 'admin_fund_detail'
+  | 'admin_risk_detail'
+  | 'admin_routing_detail'
+  | 'admin_report_detail'
+  | 'admin_settings_detail'
 
 export type Tone = 'neutral' | 'info' | 'success' | 'warning' | 'danger'
 export type Dict = Record<string, string>

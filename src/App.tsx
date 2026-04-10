@@ -7,7 +7,7 @@ import { AccountDetailPage, AccountsPage, DashboardPage, DepositPage, KycPage } 
 import { OrderDetailPage, OrdersPage, TradePage } from './pages/tradingPages'
 import { AddressApprovalDetailPage, AddressBookPage, AddAddressPage, ApprovalHistoryPage, ApprovalsPage, WithdrawPage, WithdrawSubmittedPage, WithdrawTrackingPage } from './pages/operationsPages'
 import { ChatPage, MessagesPage, TeamPage } from './pages/collaborationPages'
-import { AdminBusinessDashboardPage, AdminFundManagementPage, AdminReportManagementPage, AdminRiskManagementPage, AdminRoutingManagementPage, AdminSettingsWorkbenchPage, AdminTradeManagementPage, AdminUserManagementPage } from './pages/adminWorkbenchPages'
+import { AdminBusinessDashboardPage, AdminFundDetailPage, AdminFundManagementPage, AdminReportDetailPage, AdminReportManagementPage, AdminRiskDetailPage, AdminRiskManagementPage, AdminRoutingDetailPage, AdminRoutingManagementPage, AdminSettingsDetailPage, AdminSettingsWorkbenchPage, AdminTradeDetailPage, AdminTradeManagementPage, AdminUserDetailPage, AdminUserManagementPage } from './pages/adminWorkbenchPages'
 
 const modalContentMap = {
   zh: {
@@ -71,13 +71,20 @@ export default function App() {
       case 'chat': return <ChatPage t={t} />
       case 'team': return <TeamPage t={t} />
       case 'admin_business_dashboard': return <AdminBusinessDashboardPage language={language} />
-      case 'admin_user_management': return <AdminUserManagementPage t={t} language={language} />
-      case 'admin_trade_management': return <AdminTradeManagementPage t={t} language={language} />
-      case 'admin_fund_management': return <AdminFundManagementPage t={t} language={language} />
-      case 'admin_risk_management': return <AdminRiskManagementPage t={t} language={language} />
-      case 'admin_routing_management': return <AdminRoutingManagementPage t={t} language={language} />
-      case 'admin_report_management': return <AdminReportManagementPage t={t} language={language} />
-      case 'admin_settings': return <AdminSettingsWorkbenchPage t={t} language={language} />
+      case 'admin_user_management': return <AdminUserManagementPage t={t} language={language} setPage={setPage} />
+      case 'admin_trade_management': return <AdminTradeManagementPage t={t} language={language} setPage={setPage} />
+      case 'admin_fund_management': return <AdminFundManagementPage t={t} language={language} setPage={setPage} />
+      case 'admin_risk_management': return <AdminRiskManagementPage t={t} language={language} setPage={setPage} />
+      case 'admin_routing_management': return <AdminRoutingManagementPage t={t} language={language} setPage={setPage} />
+      case 'admin_report_management': return <AdminReportManagementPage t={t} language={language} setPage={setPage} />
+      case 'admin_settings': return <AdminSettingsWorkbenchPage t={t} language={language} setPage={setPage} />
+      case 'admin_user_detail': return <AdminUserDetailPage language={language} setPage={setPage} />
+      case 'admin_trade_detail': return <AdminTradeDetailPage language={language} setPage={setPage} />
+      case 'admin_fund_detail': return <AdminFundDetailPage language={language} setPage={setPage} />
+      case 'admin_risk_detail': return <AdminRiskDetailPage language={language} setPage={setPage} />
+      case 'admin_routing_detail': return <AdminRoutingDetailPage language={language} setPage={setPage} />
+      case 'admin_report_detail': return <AdminReportDetailPage language={language} setPage={setPage} />
+      case 'admin_settings_detail': return <AdminSettingsDetailPage language={language} setPage={setPage} />
       default: return null
     }
   }
