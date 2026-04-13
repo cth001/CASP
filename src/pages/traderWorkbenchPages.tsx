@@ -17,37 +17,17 @@ function text(language: Language) {
         historyDesc: '复盘 RFQ 报价版本、客户接受率、LP 使用情况与成交转化。',
         exception: '异常处理台',
         exceptionDesc: '处理 LP 超时、深度不足、客户确认后执行异常、TTL 过期与 callback 延迟问题。',
-        newRfq: '新进 RFQ',
-        quotedWaiting: '已报价待确认',
-        nearExpiry: '即将过期',
-        quoteRate: '今日报价成功率',
-        fillRate: '今日成交转化率',
-        rfqHealth: 'LP 健康状态',
-        listTitle: 'RFQ 工作列表',
-        marketSnap: '市场快照',
-        lpQuotes: 'LP 报价面板',
-        suggestedQuote: '系统建议报价',
-        traderActions: '交易员动作',
-        riskAudit: '风控 / 审计 / 历史',
-        buy: '买入',
-        sell: '卖出',
-        status: '状态',
-        pair: '交易对',
-        client: '客户',
-        notional: '请求名义金额',
-        ttl: 'TTL',
-        owner: '当前负责人',
-        requestQuote: '重新询价',
-        sendQuote: '发送报价',
-        requote: '重报价',
-        reject: '拒绝 RFQ',
-        escalate: '升级处理',
-        routeToLp: '指定 LP',
-        quoteHistory: '报价版本历史',
-        activity: '事件时间线',
-        risk: '风险摘要',
-        note: 'Desk Note',
-        backQueue: '返回 RFQ 队列',
+        execution: '执行监控',
+        executionDesc: '查看客户确认后的执行对象、LP 回执、成交结果与客户状态映射。',
+        exceptionDetail: '异常详情页',
+        exceptionDetailDesc: '聚焦单笔异常 RFQ / 订单，从触发条件、处理动作到对客口径与 owner 接手全链路展示。',
+        lead: 'Desk Lead 视图',
+        leadDesc: '交易主管视角，关注交易员负载、LP 使用结构、重报价率、异常升级和 desk 绩效。',
+        newRfq: '新进 RFQ', quotedWaiting: '已报价待确认', nearExpiry: '即将过期', quoteRate: '今日报价成功率', fillRate: '今日成交转化率', rfqHealth: 'LP 健康状态',
+        marketSnap: '市场快照', lpQuotes: 'LP 报价面板', suggestedQuote: '系统建议报价', traderActions: '交易员动作', riskAudit: '风控 / 审计 / 历史',
+        buy: '买入', sell: '卖出', status: '状态', pair: '交易对', client: '客户', notional: '请求名义金额', ttl: 'TTL', owner: '当前负责人',
+        requestQuote: '重新询价', sendQuote: '发送报价', requote: '重报价', reject: '拒绝 RFQ', escalate: '升级处理', routeToLp: '指定 LP', quoteHistory: '报价版本历史', activity: '事件时间线', risk: '风险摘要', note: 'Desk Note', backQueue: '返回 RFQ 队列',
+        executionState: '执行状态', customerMapping: '对客状态映射', incidentOwner: '异常 Owner',
       }
     : {
         dash: 'Trader Home',
@@ -62,37 +42,17 @@ function text(language: Language) {
         historyDesc: 'Replay quote versions, client acceptance, LP usage, and conversion outcomes.',
         exception: 'Exception Desk',
         exceptionDesc: 'Handle LP timeout, insufficient depth, TTL expiry, callback delays, and execution exceptions.',
-        newRfq: 'New RFQs',
-        quotedWaiting: 'Quoted / Waiting',
-        nearExpiry: 'Near Expiry',
-        quoteRate: 'Quote Success Today',
-        fillRate: 'Fill Conversion Today',
-        rfqHealth: 'LP Health',
-        listTitle: 'RFQ Working List',
-        marketSnap: 'Market Snapshot',
-        lpQuotes: 'LP Quote Panel',
-        suggestedQuote: 'Suggested Quote',
-        traderActions: 'Trader Actions',
-        riskAudit: 'Risk / Audit / History',
-        buy: 'Buy',
-        sell: 'Sell',
-        status: 'Status',
-        pair: 'Pair',
-        client: 'Client',
-        notional: 'Requested Notional',
-        ttl: 'TTL',
-        owner: 'Owner',
-        requestQuote: 'Refresh Quotes',
-        sendQuote: 'Send Quote',
-        requote: 'Requote',
-        reject: 'Reject RFQ',
-        escalate: 'Escalate',
-        routeToLp: 'Select LP',
-        quoteHistory: 'Quote Version History',
-        activity: 'Event Timeline',
-        risk: 'Risk Summary',
-        note: 'Desk Note',
-        backQueue: 'Back to RFQ Queue',
+        execution: 'Execution Watch',
+        executionDesc: 'Monitor post-confirm execution objects, LP callbacks, fill outcomes, and client-facing state mapping.',
+        exceptionDetail: 'Exception Detail',
+        exceptionDetailDesc: 'Single-case review for one abnormal RFQ / order across trigger, handling, owner, and client messaging.',
+        lead: 'Desk Lead View',
+        leadDesc: 'Supervisor view over trader workload, LP usage mix, requote rate, escalations, and desk performance.',
+        newRfq: 'New RFQs', quotedWaiting: 'Quoted / Waiting', nearExpiry: 'Near Expiry', quoteRate: 'Quote Success Today', fillRate: 'Fill Conversion Today', rfqHealth: 'LP Health',
+        marketSnap: 'Market Snapshot', lpQuotes: 'LP Quote Panel', suggestedQuote: 'Suggested Quote', traderActions: 'Trader Actions', riskAudit: 'Risk / Audit / History',
+        buy: 'Buy', sell: 'Sell', status: 'Status', pair: 'Pair', client: 'Client', notional: 'Requested Notional', ttl: 'TTL', owner: 'Owner',
+        requestQuote: 'Refresh Quotes', sendQuote: 'Send Quote', requote: 'Requote', reject: 'Reject RFQ', escalate: 'Escalate', routeToLp: 'Select LP', quoteHistory: 'Quote Version History', activity: 'Event Timeline', risk: 'Risk Summary', note: 'Desk Note', backQueue: 'Back to RFQ Queue',
+        executionState: 'Execution State', customerMapping: 'Client Mapping', incidentOwner: 'Incident Owner',
       }
 }
 
@@ -120,6 +80,10 @@ function LpQuoteRow({ lp, bid, ask, size, latency, tone }: { lp: string; bid: st
       <div style={{ justifySelf: 'end' }}><Badge text={latency} tone={tone} /></div>
     </div>
   )
+}
+
+function QuoteVersionCard({ version, price, ttl, lp, state, tone }: { version: string; price: string; ttl: string; lp: string; state: string; tone: 'info' | 'warning' | 'success' | 'danger' }) {
+  return <div className="card-block"><div className="row-between"><strong>{version}</strong><Badge text={state} tone={tone} /></div><div className="meta" style={{ marginTop: 8 }}>Price {price} · TTL {ttl} · {lp}</div></div>
 }
 
 export function TraderDashboardPage({ language, setPage }: { language: Language; setPage: (page: Page) => void }) {
@@ -168,12 +132,13 @@ export function TraderRfqQueuePage({ language, setPage }: { language: Language; 
       <div className="button-row" style={{ marginBottom: 14 }}>
         <input className="search-box" placeholder={language === 'zh' ? '搜索 RFQ、客户、交易对、交易员' : 'Search RFQ, client, pair, trader'} />
         <button className="btn secondary">{language === 'zh' ? '保存视图' : 'Saved Views'}</button>
+        <button className="btn secondary" onClick={() => setPage('trader_execution_watch')}>{t.execution}</button>
       </div>
       <div className="table-list">
         <RfqRow id="RFQ-20260410-001" pair="BTC/USDT" client="Payso Capital" side={t.buy} amount="250,000 USDT" status={language === 'zh' ? '待报价' : 'Awaiting Quote'} ttl="--" owner="Trader A" tone="info" onClick={() => setPage('trader_rfq_detail')} />
         <RfqRow id="RFQ-20260410-004" pair="ETH/USDT" client="OTT Demo" side={t.buy} amount="180,000 USDT" status={language === 'zh' ? '待报价' : 'Awaiting Quote'} ttl="--" owner="Trader B" tone="info" onClick={() => setPage('trader_rfq_detail')} />
         <RfqRow id="RFQ-20260410-005" pair="BTC/USDC" client="World Credit" side={t.sell} amount="2.5 BTC" status={language === 'zh' ? '待确认' : 'Quoted / Waiting'} ttl="00:29" owner="Trader A" tone="warning" onClick={() => setPage('trader_rfq_detail')} />
-        <RfqRow id="RFQ-20260410-006" pair="SOL/USDT" client="Retail Client A" side={t.buy} amount="90,000 USDT" status={language === 'zh' ? '异常' : 'Exception'} ttl="--" owner="Trader C" tone="danger" onClick={() => setPage('trader_rfq_detail')} />
+        <RfqRow id="RFQ-20260410-006" pair="SOL/USDT" client="Retail Client A" side={t.buy} amount="90,000 USDT" status={language === 'zh' ? '异常' : 'Exception'} ttl="--" owner="Trader C" tone="danger" onClick={() => setPage('trader_exception_detail')} />
       </div>
     </Panel>
   )
@@ -181,10 +146,10 @@ export function TraderRfqQueuePage({ language, setPage }: { language: Language; 
 
 export function TraderRfqDetailPage({ language, setPage }: { language: Language; setPage: (page: Page) => void }) {
   const t = text(language)
-  const [quoteVersion, setQuoteVersion] = useState('v2')
+  const [quoteVersion, setQuoteVersion] = useState('v3')
   const timeline = useMemo(() => language === 'zh'
-    ? ['RFQ 创建：客户请求 BTC/USDT 买入 250,000 USDT。', '系统完成第一轮 LP 拉价，LP-A 被建议为 primary。', 'Quote v1 已发送，因 TTL 到期未确认而失效。', 'Quote v2 生成完成，等待交易员发送。']
-    : ['RFQ created for BTC/USDT buy of 250,000 USDT.', 'First LP price pull completed and LP-A is suggested as primary.', 'Quote v1 was sent and expired without confirmation.', 'Quote v2 is prepared and waiting for trader action.'], [language])
+    ? ['RFQ 创建：客户请求 BTC/USDT 买入 250,000 USDT。', '系统完成第一轮 LP 拉价，LP-A 被建议为 primary。', 'Quote v1 已发送，因 TTL 到期未确认而失效。', 'Quote v2 已发送，但市场偏移触发自动失效。', 'Quote v3 生成完成，等待交易员发送。']
+    : ['RFQ created for BTC/USDT buy of 250,000 USDT.', 'First LP price pull completed and LP-A is suggested as primary.', 'Quote v1 was sent and expired without confirmation.', 'Quote v2 was sent and later invalidated by market drift control.', 'Quote v3 is prepared and waiting for trader action.'], [language])
   return (
     <div className="grid main-2">
       <div className="grid">
@@ -194,18 +159,12 @@ export function TraderRfqDetailPage({ language, setPage }: { language: Language;
           </div>
         </Panel>
         <div className="grid cols-2">
-          <Panel title={t.marketSnap} desc={language === 'zh' ? '实时市场与价差概览。' : 'Live market and spread overview.'}>
-            <div className="table-list"><div className="row-between"><span>Mid</span><strong>69,751.27</strong></div><div className="row-between"><span>Spread</span><strong>16.31</strong></div><div className="row-between"><span>{language === 'zh' ? '波动状态' : 'Volatility'}</span><Badge text={language === 'zh' ? '稳定' : 'Stable'} tone="success" /></div></div>
-          </Panel>
-          <Panel title={t.suggestedQuote} desc={language === 'zh' ? '系统建议报价与推荐 LP。' : 'System-suggested quote and recommended LP.'}>
-            <div className="table-list"><div className="row-between"><span>{language === 'zh' ? '推荐 LP' : 'Suggested LP'}</span><strong>LP-A</strong></div><div className="row-between"><span>{language === 'zh' ? '对客价格' : 'Client Price'}</span><strong>69,768.44</strong></div><div className="row-between"><span>{language === 'zh' ? '预计获得' : 'Estimated Receive'}</span><strong>3.582 BTC</strong></div><div className="row-between"><span>{t.ttl}</span><Badge text="00:55" tone="info" /></div></div>
-          </Panel>
+          <Panel title={t.marketSnap} desc={language === 'zh' ? '实时市场与价差概览。' : 'Live market and spread overview.'}><div className="table-list"><div className="row-between"><span>Mid</span><strong>69,751.27</strong></div><div className="row-between"><span>Spread</span><strong>16.31</strong></div><div className="row-between"><span>{language === 'zh' ? '波动状态' : 'Volatility'}</span><Badge text={language === 'zh' ? '稳定' : 'Stable'} tone="success" /></div></div></Panel>
+          <Panel title={t.suggestedQuote} desc={language === 'zh' ? '系统建议报价与推荐 LP。' : 'System-suggested quote and recommended LP.'}><div className="table-list"><div className="row-between"><span>{language === 'zh' ? '推荐 LP' : 'Suggested LP'}</span><strong>LP-A</strong></div><div className="row-between"><span>{language === 'zh' ? '对客价格' : 'Client Price'}</span><strong>69,768.44</strong></div><div className="row-between"><span>{language === 'zh' ? '预计获得' : 'Estimated Receive'}</span><strong>3.582 BTC</strong></div><div className="row-between"><span>{t.ttl}</span><Badge text="00:55" tone="info" /></div></div></Panel>
         </div>
-        <Panel title={t.lpQuotes} desc={language === 'zh' ? '可执行 LP 报价对比。' : 'Executable LP quote comparison.'}>
-          <div className="table-list"><LpQuoteRow lp="LP-A" bid="69,742.11" ask="69,758.42" size="Executable 4.2 BTC" latency="85ms" tone="success" /><LpQuoteRow lp="LP-B" bid="69,730.02" ask="69,770.14" size="Executable 3.7 BTC" latency="322ms" tone="warning" /><LpQuoteRow lp="LP-C" bid="69,721.88" ask="69,781.30" size="Executable 2.1 BTC" latency="Degraded" tone="danger" /></div>
-        </Panel>
+        <Panel title={t.lpQuotes} desc={language === 'zh' ? '可执行 LP 报价对比。' : 'Executable LP quote comparison.'}><div className="table-list"><LpQuoteRow lp="LP-A" bid="69,742.11" ask="69,758.42" size="Executable 4.2 BTC" latency="85ms" tone="success" /><LpQuoteRow lp="LP-B" bid="69,730.02" ask="69,770.14" size="Executable 3.7 BTC" latency="322ms" tone="warning" /><LpQuoteRow lp="LP-C" bid="69,721.88" ask="69,781.30" size="Executable 2.1 BTC" latency="Degraded" tone="danger" /></div></Panel>
         <Panel title={t.traderActions} desc={language === 'zh' ? '交易员控制区：可发报价、重报价、切换 LP 或拒绝。' : 'Trader control area for sending, requoting, routing, or rejecting.'}>
-          <div className="button-row" style={{ marginBottom: 14 }}><button className="btn secondary" onClick={() => setQuoteVersion('v1')}>Quote v1</button><button className="btn" onClick={() => setQuoteVersion('v2')}>Quote v2</button></div>
+          <div className="button-row" style={{ marginBottom: 14 }}><button className={`btn ${quoteVersion === 'v1' ? '' : 'secondary'}`} onClick={() => setQuoteVersion('v1')}>Quote v1</button><button className={`btn ${quoteVersion === 'v2' ? '' : 'secondary'}`} onClick={() => setQuoteVersion('v2')}>Quote v2</button><button className={`btn ${quoteVersion === 'v3' ? '' : 'secondary'}`} onClick={() => setQuoteVersion('v3')}>Quote v3</button></div>
           <div className="form-grid"><input className="input" value={quoteVersion} readOnly /><input className="input" defaultValue="69,768.44" /><input className="input" defaultValue="00:55" /><input className="input" defaultValue="LP-A" /><input className="input full" defaultValue="Use LP-A primary. Keep LP-B as backup. Market stable; no extra buffer needed." /></div>
           <div className="button-row" style={{ marginTop: 14 }}><button className="btn">{t.sendQuote}</button><button className="btn secondary">{t.requote}</button><button className="btn secondary">{t.routeToLp}</button><button className="btn secondary">{t.requestQuote}</button><button className="btn secondary">{t.escalate}</button><button className="btn secondary">{t.reject}</button></div>
         </Panel>
@@ -215,11 +174,11 @@ export function TraderRfqDetailPage({ language, setPage }: { language: Language;
           <div className="section-title">{t.risk}</div>
           <div className="table-list" style={{ marginTop: 0 }}><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '客户权限' : 'Client Access'}</span><Badge text={language === 'zh' ? '允许交易' : 'Trade Allowed'} tone="success" /></div></div><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '额度检查' : 'Limit Check'}</span><Badge text={language === 'zh' ? '通过' : 'Pass'} tone="success" /></div></div><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '价格偏移提醒' : 'Price Deviation Alert'}</span><Badge text={language === 'zh' ? '正常' : 'Normal'} tone="info" /></div></div></div>
           <div className="section-title" style={{ marginTop: 18 }}>{t.quoteHistory}</div>
-          <div className="table-list" style={{ marginTop: 0 }}><div className="table-row"><div><div className="value" style={{ marginTop: 0 }}>Quote v1</div><div className="meta">LP-A · TTL 60s</div></div><div className="meta">69,760.11</div><div style={{ justifySelf: 'end' }}><Badge text={language === 'zh' ? '已过期' : 'Expired'} tone="warning" /></div></div><div className="table-row"><div><div className="value" style={{ marginTop: 0 }}>Quote v2</div><div className="meta">LP-A primary / LP-B backup</div></div><div className="meta">69,768.44</div><div style={{ justifySelf: 'end' }}><Badge text={language === 'zh' ? '待发送' : 'Ready'} tone="info" /></div></div></div>
+          <div className="table-list" style={{ marginTop: 0 }}><QuoteVersionCard version="Quote v1" price="69,760.11" ttl="60s" lp="LP-A" state={language === 'zh' ? '已过期' : 'Expired'} tone="warning" /><QuoteVersionCard version="Quote v2" price="69,766.87" ttl="45s" lp="LP-A / LP-B" state={language === 'zh' ? '已失效' : 'Invalidated'} tone="danger" /><QuoteVersionCard version="Quote v3" price="69,768.44" ttl="55s" lp="LP-A" state={language === 'zh' ? '待发送' : 'Ready'} tone="info" /></div>
           <div className="section-title" style={{ marginTop: 18 }}>{t.activity}</div>
           <div className="timeline">{timeline.map((item, idx) => <div className="timeline-row" key={idx}><div className="time">2026-04-10 10:4{idx}:12</div><div><div className="event-title">{item}</div></div><div style={{ textAlign: 'right' }}><Badge text={idx < 2 ? 'Recorded' : 'Observed'} tone={idx < 2 ? 'success' : 'info'} /></div></div>)}</div>
           <textarea className="input" placeholder={t.note} style={{ marginTop: 14, minHeight: 110 }} defaultValue="Hold LP-B only as backup. If BTC spot moves above 69,790, trigger new quote pull immediately." />
-          <button className="btn secondary" style={{ width: '100%', marginTop: 12 }} onClick={() => setPage('trader_rfq_queue')}>{t.backQueue}</button>
+          <div className="button-row" style={{ marginTop: 12 }}><button className="btn secondary" onClick={() => setPage('trader_rfq_queue')}>{t.backQueue}</button><button className="btn secondary" onClick={() => setPage('trader_execution_watch')}>{t.execution}</button></div>
         </Panel>
       </div>
     </div>
@@ -236,7 +195,22 @@ export function TraderQuoteHistoryPage({ language }: { language: Language }) {
   return <Panel title={t.history} desc={t.historyDesc}><div className="table-list"><RfqRow id="RFQ-20260409-119 / Quote v3" pair="BTC/USDT" client="Payso Capital" side={t.buy} amount="450,000 USDT" status={language === 'zh' ? '客户接受' : 'Accepted'} ttl="--" owner="Trader A" tone="success" /><RfqRow id="RFQ-20260409-088 / Quote v2" pair="ETH/USDT" client="OTT Demo" side={t.sell} amount="220 ETH" status={language === 'zh' ? '已过期' : 'Expired'} ttl="--" owner="Trader B" tone="warning" /><RfqRow id="RFQ-20260409-061 / Quote v1" pair="SOL/USDT" client="Retail Client" side={t.buy} amount="70,000 USDT" status={language === 'zh' ? '拒绝' : 'Rejected'} ttl="--" owner="Trader C" tone="danger" /></div></Panel>
 }
 
-export function TraderExceptionDeskPage({ language }: { language: Language }) {
+export function TraderExecutionWatchPage({ language }: { language: Language }) {
   const t = text(language)
-  return <div className="grid main-2"><Panel title={t.exception} desc={t.exceptionDesc}><div className="table-list"><RfqRow id="RFQ-20260410-006" pair="SOL/USDT" client="Retail Client A" side={t.buy} amount="90,000 USDT" status={language === 'zh' ? 'LP 超时' : 'LP Timeout'} ttl="--" owner="Trader C" tone="danger" /><RfqRow id="RFQ-20260410-007" pair="BTC/USDT" client="Hunter Demo" side={t.buy} amount="500,000 USDT" status={language === 'zh' ? '深度不足' : 'Insufficient Depth'} ttl="--" owner="Trader A" tone="warning" /><RfqRow id="RFQ-20260410-008" pair="ETH/USDT" client="World Credit" side={t.sell} amount="300 ETH" status={language === 'zh' ? '客户确认后回调延迟' : 'Callback Delay After Confirm'} ttl="--" owner="Trader B" tone="danger" /></div></Panel><Panel title={language === 'zh' ? '处理建议' : 'Handling Guide'} desc={language === 'zh' ? '异常处理台用于指导交易员下一步动作。' : 'The exception desk guides the trader to the next action.'}><Notice title={language === 'zh' ? '高优先级异常' : 'High Priority Exception'} body={language === 'zh' ? '如果客户已完成正式确认，但 LP callback 未按 SLA 返回，需要立即升级到 execution support。' : 'If the client has formally confirmed and the LP callback misses SLA, escalate to execution support immediately.'} /><div className="button-row" style={{ marginTop: 14 }}><button className="btn">{t.escalate}</button><button className="btn secondary">{t.requestQuote}</button><button className="btn secondary">{t.reject}</button></div></Panel></div>
+  return <div className="grid main-2"><Panel title={t.execution} desc={t.executionDesc}><div className="table-list"><RfqRow id="EXE-20260410-011" pair="BTC/USDT" client="Payso Capital" side={t.buy} amount="250,000 USDT" status={language === 'zh' ? '等待 LP 回执' : 'Awaiting LP Callback'} ttl="--" owner="Trader A" tone="warning" /><RfqRow id="EXE-20260410-012" pair="ETH/USDT" client="Hunter Demo" side={t.sell} amount="120 ETH" status={language === 'zh' ? '已成交待映射' : 'Filled / Mapping Pending'} ttl="--" owner="Trader B" tone="info" /><RfqRow id="EXE-20260410-013" pair="SOL/USDT" client="Maria Santos" side={t.buy} amount="80,000 USDT" status={language === 'zh' ? '已完成' : 'Completed'} ttl="--" owner="Trader A" tone="success" /></div></Panel><Panel title={t.customerMapping} desc={language === 'zh' ? '客户确认后，执行状态与前台状态映射分层展示。' : 'Post-confirm execution state and client-facing state mapping are intentionally separated.'}><div className="table-list"><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '内部执行态' : 'Internal Execution State'}</span><Badge text={language === 'zh' ? '已成交待结算' : 'Filled / Settle Pending'} tone="info" /></div></div><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '客户前台状态' : 'Client-visible State'}</span><Badge text={language === 'zh' ? '处理中' : 'Processing'} tone="info" /></div></div><Notice title={language === 'zh' ? '评审提示' : 'Review Note'} body={language === 'zh' ? '交易员工作台展示内部执行细节，但对客状态仍应经过平台映射，不直接暴露 LP 原始回执。' : 'The trader workbench shows internal execution detail, while client-visible state should remain platform-mapped and must not expose raw LP callbacks.'} /></div></Panel></div>
+}
+
+export function TraderExceptionDeskPage({ language, setPage }: { language: Language; setPage: (page: Page) => void }) {
+  const t = text(language)
+  return <div className="grid main-2"><Panel title={t.exception} desc={t.exceptionDesc}><div className="table-list"><RfqRow id="RFQ-20260410-006" pair="SOL/USDT" client="Retail Client A" side={t.buy} amount="90,000 USDT" status={language === 'zh' ? 'LP 超时' : 'LP Timeout'} ttl="--" owner="Trader C" tone="danger" onClick={() => setPage('trader_exception_detail')} /><RfqRow id="RFQ-20260410-007" pair="BTC/USDT" client="Hunter Demo" side={t.buy} amount="500,000 USDT" status={language === 'zh' ? '深度不足' : 'Insufficient Depth'} ttl="--" owner="Trader A" tone="warning" onClick={() => setPage('trader_exception_detail')} /><RfqRow id="RFQ-20260410-008" pair="ETH/USDT" client="World Credit" side={t.sell} amount="300 ETH" status={language === 'zh' ? '客户确认后回调延迟' : 'Callback Delay After Confirm'} ttl="--" owner="Trader B" tone="danger" onClick={() => setPage('trader_exception_detail')} /></div></Panel><Panel title={language === 'zh' ? '处理建议' : 'Handling Guide'} desc={language === 'zh' ? '异常处理台用于指导交易员下一步动作。' : 'The exception desk guides the trader to the next action.'}><Notice title={language === 'zh' ? '高优先级异常' : 'High Priority Exception'} body={language === 'zh' ? '如果客户已完成正式确认，但 LP callback 未按 SLA 返回，需要立即升级到 execution support。' : 'If the client has formally confirmed and the LP callback misses SLA, escalate to execution support immediately.'} /><div className="button-row" style={{ marginTop: 14 }}><button className="btn">{t.escalate}</button><button className="btn secondary">{t.requestQuote}</button><button className="btn secondary">{t.reject}</button></div></Panel></div>
+}
+
+export function TraderExceptionDetailPage({ language, setPage }: { language: Language; setPage: (page: Page) => void }) {
+  const t = text(language)
+  return <div className="grid main-2"><Panel title={t.exceptionDetail} desc={t.exceptionDetailDesc}><div className="grid cols-2"><div className="card-block"><div className="label">RFQ</div><div className="value">RFQ-20260410-008</div></div><div className="card-block"><div className="label">{t.pair}</div><div className="value">ETH / USDT</div></div><div className="card-block"><div className="label">{t.client}</div><div className="value">World Credit</div></div><div className="card-block"><div className="label">{t.incidentOwner}</div><div className="value">Trader B / Exec Support</div></div><div className="card-block"><div className="label">Trigger</div><div className="value">Client confirmed, LP callback delayed beyond SLA</div></div><div className="card-block"><div className="label">{t.executionState}</div><div className="value">Awaiting LP callback</div></div></div><div className="section-title" style={{ marginTop: 18 }}>{t.activity}</div><div className="timeline"><div className="timeline-row"><div className="time">10:42:08</div><div><div className="event-title">Client completed formal confirmation.</div></div><div style={{ textAlign: 'right' }}><Badge text="Recorded" tone="success" /></div></div><div className="timeline-row"><div className="time">10:42:09</div><div><div className="event-title">Execution request sent to LP-A.</div></div><div style={{ textAlign: 'right' }}><Badge text="Recorded" tone="success" /></div></div><div className="timeline-row"><div className="time">10:42:46</div><div><div className="event-title">LP callback breached expected SLA window.</div></div><div style={{ textAlign: 'right' }}><Badge text="Exception" tone="danger" /></div></div></div></Panel><Panel title={t.customerMapping} desc={language === 'zh' ? '异常 case 下的内部状态与对客口径。' : 'Internal state and client-visible posture for the exception case.'}><div className="table-list"><div className="card-block"><div className="row-between"><span>Internal</span><Badge text={language === 'zh' ? '执行异常调查中' : 'Execution Exception Investigating'} tone="danger" /></div></div><div className="card-block"><div className="row-between"><span>Client</span><Badge text={language === 'zh' ? '处理中' : 'Processing'} tone="info" /></div></div><div className="card-block"><div className="meta">{language === 'zh' ? '对客说明建议：订单已进入执行链路，当前正在等待上游结果返回。' : 'Suggested client copy: the order has entered execution flow and the platform is waiting for upstream confirmation.'}</div></div></div><div className="button-row" style={{ marginTop: 14 }}><button className="btn">{t.escalate}</button><button className="btn secondary" onClick={() => setPage('trader_exception_desk')}>{language === 'zh' ? '返回异常处理台' : 'Back to exception desk'}</button></div></Panel></div>
+}
+
+export function TraderDeskLeadPage({ language }: { language: Language }) {
+  const t = text(language)
+  return <div className="grid"><Panel title={t.lead} desc={t.leadDesc}><div className="grid cols-4"><Metric title={language === 'zh' ? '交易员在线负载' : 'Trader Active Load'} value="A:12 / B:9 / C:7" sub={language === 'zh' ? '当前未分配 2 笔' : '2 RFQs currently unassigned'} /><Metric title={language === 'zh' ? '重报价率' : 'Requote Rate'} value="18.2%" sub={language === 'zh' ? 'BTC 对高金额订单偏高' : 'Elevated for large BTC tickets'} /><Metric title={language === 'zh' ? '异常升级' : 'Escalations'} value="4" sub={language === 'zh' ? '2 execution / 2 LP timeout' : '2 execution / 2 LP timeout'} /><Metric title={language === 'zh' ? 'LP 使用结构' : 'LP Usage Mix'} value="LP-A 68%" sub="LP-B 24% / LP-C 8%" /></div></Panel><div className="grid main-2"><Panel title={language === 'zh' ? '交易员负载与绩效' : 'Trader Load & Performance'} desc={language === 'zh' ? '主管可快速观察当前队列分配与结果表现。' : 'Supervisor snapshot for queue allocation and outcome quality.'}><div className="table-list"><div className="table-row"><div><div className="value" style={{ marginTop: 0 }}>Trader A</div><div className="meta">Assigned 12 RFQs</div></div><div className="meta">Quote success 97.8% · Fill 66.1%</div><div style={{ justifySelf: 'end' }}><Badge text="Balanced" tone="success" /></div></div><div className="table-row"><div><div className="value" style={{ marginTop: 0 }}>Trader B</div><div className="meta">Assigned 9 RFQs</div></div><div className="meta">Quote success 95.1% · Fill 58.2%</div><div style={{ justifySelf: 'end' }}><Badge text="Monitor" tone="warning" /></div></div><div className="table-row"><div><div className="value" style={{ marginTop: 0 }}>Trader C</div><div className="meta">Assigned 7 RFQs</div></div><div className="meta">Quote success 91.4% · Exceptions 3</div><div style={{ justifySelf: 'end' }}><Badge text="Attention" tone="danger" /></div></div></div></Panel><Panel title={language === 'zh' ? '主管建议动作' : 'Lead Actions'} desc={language === 'zh' ? '评审稿里建议明确主管可见动作。' : 'Supervisor actions recommended for reviewable design.'}><div className="table-list"><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '重新分配队列' : 'Rebalance Queue'}</span><Badge text={language === 'zh' ? '建议' : 'Recommended'} tone="info" /></div></div><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '临时切换 LP 优先级' : 'Adjust LP Priority Temporarily'}</span><Badge text={language === 'zh' ? '需要审批' : 'Approval Needed'} tone="warning" /></div></div><div className="card-block"><div className="row-between"><span>{language === 'zh' ? '升级执行支持' : 'Escalate Exec Support'}</span><Badge text={language === 'zh' ? '立即' : 'Immediate'} tone="danger" /></div></div></div></Panel></div></div>
 }

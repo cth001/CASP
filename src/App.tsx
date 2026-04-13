@@ -7,7 +7,7 @@ import { AccountDetailPage, AccountsPage, DashboardPage, DepositPage, KycPage } 
 import { OrderDetailPage, OrdersPage, TradePage } from './pages/tradingPages'
 import { AddressApprovalDetailPage, AddressBookPage, AddAddressPage, ApprovalHistoryPage, ApprovalsPage, WithdrawPage, WithdrawSubmittedPage, WithdrawTrackingPage } from './pages/operationsPages'
 import { ChatPage, MessagesPage, TeamPage } from './pages/collaborationPages'
-import { TraderDashboardPage, TraderExceptionDeskPage, TraderLpMonitorPage, TraderQuoteHistoryPage, TraderRfqDetailPage, TraderRfqQueuePage } from './pages/traderWorkbenchPages'
+import { TraderDashboardPage, TraderDeskLeadPage, TraderExceptionDeskPage, TraderExceptionDetailPage, TraderExecutionWatchPage, TraderLpMonitorPage, TraderQuoteHistoryPage, TraderRfqDetailPage, TraderRfqQueuePage } from './pages/traderWorkbenchPages'
 import { AdminBusinessDashboardPage, AdminFundDetailPage, AdminFundManagementPage, AdminReportDetailPage, AdminReportManagementPage, AdminRiskDetailPage, AdminRiskManagementPage, AdminRoutingDetailPage, AdminRoutingManagementPage, AdminSettingsDetailPage, AdminSettingsWorkbenchPage, AdminTradeDetailPage, AdminTradeManagementPage, AdminUserDetailPage, AdminUserManagementPage } from './pages/adminWorkbenchPages'
 
 const modalContentMap = {
@@ -75,8 +75,11 @@ export default function App() {
       case 'trader_rfq_queue': return <TraderRfqQueuePage language={language} setPage={setPage} />
       case 'trader_rfq_detail': return <TraderRfqDetailPage language={language} setPage={setPage} />
       case 'trader_lp_monitor': return <TraderLpMonitorPage language={language} />
+      case 'trader_execution_watch': return <TraderExecutionWatchPage language={language} />
       case 'trader_quote_history': return <TraderQuoteHistoryPage language={language} />
-      case 'trader_exception_desk': return <TraderExceptionDeskPage language={language} />
+      case 'trader_exception_desk': return <TraderExceptionDeskPage language={language} setPage={setPage} />
+      case 'trader_exception_detail': return <TraderExceptionDetailPage language={language} setPage={setPage} />
+      case 'trader_desk_lead': return <TraderDeskLeadPage language={language} />
       case 'admin_business_dashboard': return <AdminBusinessDashboardPage language={language} />
       case 'admin_user_management': return <AdminUserManagementPage t={t} language={language} setPage={setPage} />
       case 'admin_trade_management': return <AdminTradeManagementPage t={t} language={language} setPage={setPage} />
